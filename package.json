@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "PORT=4040 GITHUB_REPO=usernames/sentieodesktop UPDATES_PRIVATE_REPO=true GITHUB_TOKEN=ff18df0e72614335c10b937a1d98f161a3f92635 REPO_OWNER=usernames REPO_NAME=sentieodesktop node index.js",
+    "start": "PORT=8070 GITHUB_REPO=usernames/sentieodesktop UPDATES_PRIVATE_REPO=true GITHUB_TOKEN=29549d14dac6f84bc2ced1f09c7243f620b426d4 REPO_OWNER=usernames REPO_NAME=sentieodesktop node index.js",
     "start_old" : "PORT=4000 node index.js",
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1",
