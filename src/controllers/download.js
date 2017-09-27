@@ -51,7 +51,7 @@ export async function latest(req, res) {
 
 export async function latestServerRelease(req, res) {
   const platform = req.params.platform;
-  if (!['darwin', 'win32', 'linux'].includes(platform)) throw new BadRequestError(`Invalid platform '${platform}'.`);
+  if (!['mac', 'win64', 'win32', 'linux'].includes(platform)) throw new BadRequestError(`Invalid platform '${platform}'.`);
 
   const preferZip = req.query.zip; // darwin or win32
   const arch = req.query.arch;
