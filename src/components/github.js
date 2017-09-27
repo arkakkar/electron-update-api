@@ -120,7 +120,7 @@ export function getLatestServerRelease(platform) {
   var app = express();
 
   return new Promise(function(resolve, reject) {
-    app.get('https://download.sentieo.com/desktop/releasecheck.json', function (req, res) {
+    app.get('/desktop/releasecheck.json', function (req, res) {
       switch (platform) {
         case 'mac' :
           res.download(res.mac);
