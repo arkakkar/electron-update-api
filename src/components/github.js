@@ -115,6 +115,35 @@ export function getLatestRelease(channel = config.channels[0]) {
   });
 }
 
+export function getLatestServerRelease(platform) {
+  var express = require('express');
+  var app = express();
+
+  return new Promise(function(resolve, reject) {
+    app.get('https://download.sentieo.com/desktop/releasecheck.json', function (req, res) {
+      switch (platform) {
+        case 'mac' :
+          res.download(res.mac);
+          res.end();
+          break;
+        case 'win32':
+          res.download(res.win32);
+          res.end();
+          break;
+        case 'win64':
+          res.download(res.win64);
+          res.end();
+          break;
+        case 'default':
+          res.send('<a href="https://download.sentieo.com/desktop/home" target="_blank">Sentieo Desktop </a>');
+          res.end();
+          break;
+      }
+      resolve();
+    });
+  });
+}
+
 export function getPublicDownloadUrl(url) {
   return new Promise(function(resolve, reject) {
     const options = {
