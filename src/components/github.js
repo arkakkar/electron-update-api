@@ -116,30 +116,29 @@ export function getLatestRelease(channel = config.channels[0]) {
 }
 
 export function getLatestServerRelease(platform) {
-  var express = require('express');
-  var app = express();
+  var request = require('request');
+  var fileDownloadUrl;
 
   return new Promise(function(resolve, reject) {
-    app.get('/desktop/releasecheck.json', function (req, res) {
+    request('https://download.sentieo.com/desktop/releasecheck.json', function (err, response, body) {
+      body = JSON.parse(body);
+      console.log('body.win64',body.win64);
       switch (platform) {
         case 'mac' :
-          res.download(res.mac);
-          res.end();
+          fileDownloadUrl = body.mac;
           break;
         case 'win32':
-          res.download(res.win32);
-          res.end();
+          fileDownloadUrl = body.win32;
           break;
         case 'win64':
-          res.download(res.win64);
-          res.end();
+          fileDownloadUrl = body.win64;
           break;
         case 'default':
           res.send('<a href="https://download.sentieo.com/desktop/home" target="_blank">Sentieo Desktop </a>');
           res.end();
           break;
       }
-      resolve();
+       resolve(fileDownloadUrl);
     });
   });
 }

@@ -62,8 +62,8 @@ export async function latestServerRelease(req, res) {
     if (!['deb', 'rpm'].includes(pkg)) throw new BadRequestError(`Invalid pkg '${pkg}'.`);
   }
 
-  const latestServerRelease = await getLatestServerRelease(platform);
-  if (!latestRelease) throw new NotFoundError('Latest release not found.');
+  const latestServerReleaseName = await getLatestServerRelease(platform);
+  if (!latestServerReleaseName) throw new NotFoundError('Latest release not found.');
 
   let asset = null;
   let pattern = null;
@@ -82,13 +82,11 @@ export async function latestServerRelease(req, res) {
       break;
   }
 
-  asset = latestRelease.assets.find(a => a.name.match(pattern));
-  if (!asset) throw new NotFoundError(`No asset found that matches '${pattern}'.`);
 
-  let downloadUrl = asset.browser_download_url;
-  if (config.privateRepo) {
+  let downloadUrl = latestServerReleaseName;
+  /*if (config.privateRepo) {
     downloadUrl = await getPublicDownloadUrl(asset.url);
-  }
+  }*/
 
   res.redirect(302, downloadUrl);
 }
