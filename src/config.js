@@ -1,5 +1,5 @@
 export default {
-  port: process.env.UPDATES_PORT || process.env.PORT || 3000,
+  port: process.env.UPDATES_PORT || process.env.PORT || 5000,
   host: process.env.UPDATES_HOST || '0.0.0.0',
   github: {
     token: process.env.GITHUB_TOKEN,
@@ -42,4 +42,7 @@ export default {
   downloadsCountOffset: parseInt(process.env.DOWNLOADS_COUNT_OFFSET || '0') || 0,
   excludeDrafts: JSON.parse(process.env.EXCLUDE_DRAFTS || 'true'),
   excludePrereleases: JSON.parse(process.env.EXCLUDE_PRERELEASES || 'false')
+
+
+  /*"start": "UPDATES_PRIVATE_REPO=true GITHUB_TOKEN=ff18df0e72614335c10b937a1d98f161a3f92635 REPO_OWNER=usernames REPO_NAME=sentieodesktop node index.js",*/
 };
