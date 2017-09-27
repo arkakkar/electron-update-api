@@ -2,7 +2,7 @@ import BadRequestError from '../errors/BadRequestError';
 import NotFoundError from '../errors/NotFoundError';
 
 import {downloadMirror} from '../components/mirrors';
-import {getLatestRelease, getPublicDownloadUrl} from '../components/github';
+import {getLatestRelease, getPublicDownloadUrl, getLatestServerRelease} from '../components/github';
 import config from '../config';
 
 export async function latest(req, res) {
