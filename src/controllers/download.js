@@ -51,6 +51,7 @@ export async function latest(req, res) {
 
 export async function latestServerRelease(req, res) {
   const platform = req.params.platform;
+  const server = req.params.server;
   if (!['mac', 'win64', 'win32', 'linux'].includes(platform)) throw new BadRequestError(`Invalid platform '${platform}'.`);
 
   const preferZip = req.query.zip; // darwin or win32
@@ -62,7 +63,7 @@ export async function latestServerRelease(req, res) {
     if (!['deb', 'rpm'].includes(pkg)) throw new BadRequestError(`Invalid pkg '${pkg}'.`);
   }
 
-  const latestServerReleaseName = await getLatestServerRelease(platform);
+  const latestServerReleaseName = await getLatestServerRelease(platform,server);
   if (!latestServerReleaseName) throw new NotFoundError('Latest release not found.');
 
   let asset = null;
